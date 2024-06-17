@@ -56,7 +56,7 @@ app.get('/contact', (req, res) => {
 app.get('/about', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'about.html'));
 });
-app.get('/service', (req, res) => {
+app.get('/services', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'service.html'));
 });
 app.get('/tradeFinance', (req, res) => {
@@ -216,4 +216,4 @@ app.post('/checkout', async (req, res) => {
 
 
 
-// app.listen(port, () => console.log(`Server at :${port}`)) 
+app.listen(port, () => console.log(`Server at :${port}`)) 
