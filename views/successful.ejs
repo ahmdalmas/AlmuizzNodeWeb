@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Payment Successful | AL MUIZZ COMMERCIAL BROKERS CO. L.L.C</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="AL MUIZZ COMMERCIAL BROKERS CO. L.L.C" name="keywords">
+
+
+    <!-- Favicon -->
+    <link href="<%= baseUrl %>/img/favicon-32x32.png" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Oswald:wght@500;600;700&family=Pacifico&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="<%= baseUrl %>/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="<%= baseUrl %>/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="<%= baseUrl %>/css/style.css" rel="stylesheet">
+    <link href="<%= baseUrl %>/css/success.css" rel="stylesheet">
+    <link href="<%= baseUrl %>/css/successModal.css" rel="stylesheet">
+
+    <!-- <script>
+        // Redirect to home page after 5 seconds
+        setTimeout(() => {
+            window.location.href = '<%= baseUrl %>/';
+        }, 5000);
+    </script> -->
+
+</head>
+
+<body class="bg-bslack">
+
+
+
+
+
+    <div class="container">
+        <section id="formHolder">
+
+            <div class="row">
+
+                <!-- Brand Box -->
+                <div class="col-sm-12 col-md-6 brand align-items-center justify-content-center d-flex">
+                    <a href="/" class="navbar-brand">
+                        <img src="<%= baseUrl %>/img/logo.png" alt="logo" class="logo mobile-logo">
+                        <!-- <h1 class="m-0 text-uppercase text-white"><i class="fa fa-birthday-cake fs-1 text-dark me-3"></i>Almuizz</h1> -->
+                    </a>
+                </div>
+                <!-- Form Box -->
+                <div class="col-sm-6 form">
+                    <div class="signup form-peice">
+
+                        <div class="custom-overlay" style="display: flex;">
+                            <div class="custom-modal-wrapper">
+
+                                <h2 class="card-name">Transaction Successful</h2>
+                                <p class="text-center">Thank you for choosing us.</p>
+                                <div class="card-price custom-modal-price">
+                                    <h2>
+                                        <%= amount %>
+                                    </h2>
+                                    <span class="ion--checkmark-done-circle m-4"></span>
+                                    <h6>Transaction Id: <%= tnx_no %>
+                                    </h6>
+                                </div>
+                                <div class="d-flex flex-column gap-3">
+                                    <a href="/payment" class="text-dark">
+                                        <span class="custom-close d-flex fw-bold">
+                                            Deposit again
+                                        </span>
+                                    </a>
+                                    <a href="<%= baseUrl %>/" class="text-dark">
+                                        <span class="custom-close d-flex fw-bold">
+                                            <span class="material-symbols--home"></span>Home
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Box -->
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="<%= baseUrl %>/lib/easing/easing.min.js"></script>
+    <script src="<%= baseUrl %>/lib/waypoints/waypoints.min.js"></script>
+    <script src="<%= baseUrl %>/lib/counterup/counterup.min.js"></script>
+    <script src="<%= baseUrl %>/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+    <!-- Template Javascript -->
+    <script src="<%= baseUrl %>/js/main.js"></script>
+    </script>
+</body>
+
+</html>
