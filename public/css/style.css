@@ -437,11 +437,11 @@ span {
 }
 
 .services-page-title {
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 1.3em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.1em;
     font-weight: 400;
     line-height: 1.8em;
-    text-align: center;
+    text-align: justify;
     color: #ffffff;
 }
 
@@ -460,10 +460,11 @@ span {
 }
 
 .service-bg li {
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 1.3em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1rem;
     font-weight: 400;
     line-height: 1.8em;
     text-align: left;
     padding: 10px;
 }
+
