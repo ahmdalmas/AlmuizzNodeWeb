@@ -214,4 +214,4 @@ app.post('/checkout', async (req, res) => {
 
 
 
-app.listen(process.env.PORT || 3000, () => console.log(`http://localhost:${port}`)) 
+app.listen(process.env.PORT || 3000, () => console.log(`Server at :${process.env.PORT}`)) 
