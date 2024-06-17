@@ -10,6 +10,8 @@ const session = require('express-session');
 // const helmet = require('helmet');
 const cors = require('cors');
 
+const port = process.env.PORT || 3000;
+
 // const rateLimit = require('express-rate-limit');
 
 
@@ -214,4 +216,4 @@ app.post('/checkout', async (req, res) => {
 
 
 
-app.listen(process.env.PORT || 3000, () => console.log(`Server at :${process.env.PORT}`)) 
+app.listen(port, () => console.log(`Server at :${port}`)) 
