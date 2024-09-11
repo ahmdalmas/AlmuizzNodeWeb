@@ -7,35 +7,46 @@ const session = require('express-session');
 // const nodemailer = require('nodemailer');
 
 
-// const helmet = require('helmet');
+const helmet = require('helmet');
 const cors = require('cors');
 
 const port = process.env.PORT || 3000;
 
-// const rateLimit = require('express-rate-limit');
+const rateLimit = require('express-rate-limit');
 
 
-// const limiter = rateLimit({
-//     windowMs: 15 * 60 * 1000, // 15 minutes
-//     max: 100 // limit each IP to 100 requests per windowMs
-// });
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100 // limit each IP to 100 requests per windowMs
+});
 
-// app.use(limiter);
-// const corsOptions = {
-//     origin: (process.env.SERVER_URL) // Replace with your allowed origin
-// };
-app.use(cors());
-// app.use(helmet());
+app.use(limiter);
+const corsOptions = {
+    origin: (process.env.SERVER_URL)
+};
+
+app.use(cors(corsOptions));
+
+
+app.use(helmet({
+    contentSecurityPolicy: {
+        useDefaults: true,
+        directives: {
+            defaultSrc: ["'self'"],
+            scriptSrc: ["'self'", "https://js.stripe.com", "https://code.jquery.com", "https://cdn.jsdelivr.net"],
+            connectSrc: ["'self'", "https://api.stripe.com"],
+        }
+    }
+}));
 app.use(session({
     secret: '53d6323b2a326c18da7f0629861a41219db22b3d5d3f52ccbd3dda8a672a0cf5b61f02210399570be8905d6318cd6f6a54e8605e96d2b30e10b174ff025009ed', // Replace with a secure secret key
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false } // Set to true if using HTTPS
+    cookie: { secure: true } // Set to true if using HTTPS
 }));
 app.use(express.json())
-app.use(express.static('public'))
-
 app.use(express.static(path.join(__dirname, 'public')));
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -43,6 +54,10 @@ app.set('view engine', 'ejs');
 
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY)
 
+app.use((req, res, next) => {
+    res.setHeader("Content-Security-Policy", "script-src 'self' https://js.stripe.com https://code.jquery.com https://cdn.jsdelivr.net;");
+    next();
+});
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
