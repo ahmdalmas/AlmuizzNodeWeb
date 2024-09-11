@@ -4,6 +4,8 @@ const express = require('express')
 const app = express()
 const path = require('path');
 const session = require('express-session');
+const morgan = require('morgan');
+
 // const nodemailer = require('nodemailer');
 
 
@@ -58,6 +60,9 @@ app.use((req, res, next) => {
     res.setHeader("Content-Security-Policy", "script-src 'self' https://js.stripe.com https://code.jquery.com https://cdn.jsdelivr.net;");
     next();
 });
+
+app.use(morgan('combined')); // Use 'combined' for detailed logs
+
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
