@@ -5,6 +5,8 @@ const app = express()
 const path = require('path');
 const session = require('express-session');
 const morgan = require('morgan');
+const compression = require('compression');
+
 
 // const nodemailer = require('nodemailer');
 
@@ -18,7 +20,7 @@ const rateLimit = require('express-rate-limit');
 
 
 const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
+    windowMs: 1 * 60 * 1000, // 15 minutes
     max: 100 // limit each IP to 100 requests per windowMs
 });
 
@@ -35,7 +37,7 @@ app.use(helmet({
         useDefaults: true,
         directives: {
             defaultSrc: ["'self'"],
-            scriptSrc: ["'self'", "https://js.stripe.com", "https://code.jquery.com", "https://cdn.jsdelivr.net"],
+            scriptSrc: ["'self'", "https://js.stripe.com", "https://code.jquery.com", "https://cdn.jsdelivr.net", "https://maxcdn.bootstrapcdn.com"],
             connectSrc: ["'self'", "https://api.stripe.com"],
         }
     }
@@ -46,8 +48,12 @@ app.use(session({
     saveUninitialized: true,
     cookie: { secure: true } // Set to true if using HTTPS
 }));
+app.use(compression());
+
 app.use(express.json())
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'), {
+    maxAge: '1d' // Cache static assets for 1 day
+}));
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -57,11 +63,13 @@ app.set('view engine', 'ejs');
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY)
 
 app.use((req, res, next) => {
-    res.setHeader("Content-Security-Policy", "script-src 'self' https://js.stripe.com https://code.jquery.com https://cdn.jsdelivr.net;");
+    res.setHeader("Content-Security-Policy", "script-src 'self' https://js.stripe.com https://code.jquery.com https://cdn.jsdelivr.net https://maxcdn.bootstrapcdn.com;");
     next();
 });
 
-app.use(morgan('combined')); // Use 'combined' for detailed logs
+
+
+// app.use(morgan('combined')); // Use 'combined' for detailed logs
 
 
 app.get('/', (req, res) => {
